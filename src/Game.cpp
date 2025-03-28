@@ -55,7 +55,7 @@ void Game::start() {
             }
             case 'C': {
                 if (gameMap.playerCollectsCatnip()) {
-                    gameMap.moveCatWithCatnip();  // Use Catnip to move the cat
+                    gameMap.moveCatWithCatnip();
                 }
                 validAction = true;
                 break;

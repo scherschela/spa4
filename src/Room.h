@@ -3,16 +3,16 @@
 
 class Room {
 public:
-    bool hasCatnip;  // Whether this room has catnip
-    bool hasDog;     // Whether this room has a dog
-    bool hasManhole; // Whether this room has a manhole
+    bool hasCatnip;
+    bool hasDog;
+    bool hasManhole;
 
-    Room();          // Constructor
+    Room();
 
-    void setCatnip(bool value);  // Set the catnip flag
-    bool getCatnip() const;      // Get if the room has catnip
-    void setManhole(bool value); // Set the manhole flag
-    bool getManhole() const;     // Get if the room has a manhole
+    void setCatnip(bool value);
+    bool getCatnip() const;
+    void setManhole(bool value);
+    bool getManhole() const;
 };
 
 #endif

@@ -11,4 +11,4 @@ public:
     void start();
 };
 
-#endif // GAME_H
+#endif

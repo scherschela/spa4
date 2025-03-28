@@ -3,17 +3,17 @@
 Room::Room() : hasCatnip(false), hasDog(false), hasManhole(false) {}
 
 void Room::setCatnip(bool value) {
-    hasCatnip = value;  // Set whether the room has catnip
+    hasCatnip = value;
 }
 
 bool Room::getCatnip() const {
-    return hasCatnip;   // Return if the room contains catnip
+    return hasCatnip;
 }
 
 void Room::setManhole(bool value) {
-    hasManhole = value;  // Set whether the room has a manhole
+    hasManhole = value;
 }
 
 bool Room::getManhole() const {
-    return hasManhole;   // Return if the room contains a manhole
+    return hasManhole;
 }
