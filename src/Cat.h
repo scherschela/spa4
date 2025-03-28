@@ -1,7 +1,10 @@
 #ifndef CAT_H
 #define CAT_H
 
-class Cat {
+#include "Entity.h"
+
+
+class Cat : public Entity {
 private:
     int x, y;
 

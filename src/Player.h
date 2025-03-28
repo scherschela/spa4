@@ -1,7 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-class Player {
+#include "Entity.h"
+
+class Player : Entity {
 private:
     int x, y;
     bool catnip;

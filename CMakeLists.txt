@@ -13,4 +13,6 @@ add_executable(spa4 src/main.cpp
         src/Room.cpp
         src/Player.cpp
         src/Game.cpp
-        src/Cat.cpp)
+        src/Cat.cpp
+        src/Entity.cpp
+        src/Entity.h)
