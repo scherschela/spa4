@@ -81,7 +81,6 @@ void Game::start() {
                 return;
             }
 
-            gameMap.moveCat();  // If no catnip used, move the cat randomly
         }
     }
 }

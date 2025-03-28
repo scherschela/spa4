@@ -11,7 +11,7 @@ Map::Map() {
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 5; ++j) {
             // Randomly place catnip in some rooms
-            if (std::rand() % 5 == 0) {
+            if (std::rand() % 11 == 0) {
                 gameBoard[i][j].setCatnip(true);
             }
         }
@@ -63,18 +63,6 @@ void Map::movePlayer(int direction) {
     }
 }
 
-void Map::moveCat() {
-    int dx = std::rand() % 3 - 1;  // Random move in the x direction (-1, 0, 1)
-    int dy = std::rand() % 3 - 1;  // Random move in the y direction (-1, 0, 1)
-
-    int newX = cat.getX() + dx;
-    int newY = cat.getY() + dy;
-
-    // Ensure the cat stays within bounds
-    if (newX >= 0 && newX < 5 && newY >= 0 && newY < 5) {
-        cat.setPosition(newX, newY);
-    }
-}
 
 bool Map::checkWin() const {
     // If the player and cat are in the same room, the player wins
@@ -131,7 +119,5 @@ void Map::moveCatWithCatnip() {
             cat.setPosition(newX, newY);
         }
         std::cout << "The cat is lured towards you by the catnip!\n";
-    } else {
-        moveCat();  // If no catnip, move the cat randomly
     }
 }

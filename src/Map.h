@@ -15,7 +15,6 @@ public:
     Map();  // Constructor to initialize the game board
     void display() const;  // Display the game board
     void movePlayer(int direction);  // Move player based on direction
-    void moveCat();  // Move the cat randomly
     bool checkWin() const;  // Check if the player caught the cat
     bool checkLoss() const;  // Check if the player stepped into the cat's room
     bool checkNetCatch(int direction);  // Check if the net catches the cat
