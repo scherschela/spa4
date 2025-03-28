@@ -10,10 +10,26 @@ Map::Map() {
     // Initialize the game board with rooms
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 5; ++j) {
-            // Randomly place catnip in some rooms
-            if (std::rand() % 11 == 0) {
-                gameBoard[i][j].setCatnip(true);
-            }
+            gameBoard[i][j].setCatnip(false);  // Ensure no catnip at start
+            gameBoard[i][j].setManhole(false); // Ensure no manholes at start
+        }
+    }
+
+    // Place exactly 1 catnip in a random room
+    int catnipX = std::rand() % 5;
+    int catnipY = std::rand() % 5;
+    gameBoard[catnipX][catnipY].setCatnip(true);  // Set catnip in a random room
+
+    // Place exactly 2 manholes in random rooms
+    int manholeCount = 0;
+    while (manholeCount < 2) {
+        int manholeX = std::rand() % 5;
+        int manholeY = std::rand() % 5;
+
+        // Ensure the manhole is not placed where the catnip is
+        if (!gameBoard[manholeX][manholeY].getCatnip() && !gameBoard[manholeX][manholeY].getManhole()) {
+            gameBoard[manholeX][manholeY].setManhole(true);
+            manholeCount++;
         }
     }
 
@@ -33,6 +49,8 @@ void Map::display() const {
                 std::cout << "C ";  // Cat position
             } else if (gameBoard[x][y].getCatnip()) {
                 std::cout << "N ";  // Catnip in the room
+            } else if (gameBoard[x][y].getManhole()) {
+                std::cout << "M ";  // Manhole in the room
             } else {
                 std::cout << ". ";  // Empty space
             }
@@ -58,11 +76,16 @@ void Map::movePlayer(int direction) {
     if (newX >= 0 && newX < 5 && newY >= 0 && newY < 5) {
         player.setPosition(newX, newY);
 
+        // Check if the player steps into a manhole
+        if (gameBoard[newX][newY].getManhole()) {
+            std::cout << "You fell into a manhole! Game over.\n";
+            exit(0);  // End the game if the player falls into a manhole
+        }
+
         // Check if the player collects catnip in the new room
         playerCollectsCatnip();
     }
 }
-
 
 bool Map::checkWin() const {
     // If the player and cat are in the same room, the player wins
@@ -70,7 +93,7 @@ bool Map::checkWin() const {
 }
 
 bool Map::checkLoss() const {
-    // If the player and cat are in the same room, the player loses
+    // If the player steps into the cat's room, they lose
     return player.getX() == cat.getX() && player.getY() == cat.getY();
 }
 
@@ -108,8 +131,8 @@ void Map::moveCatWithCatnip() {
         int dy = player.getY() - cat.getY();
 
         // Normalize the direction towards the player
-        if (dx != 0) dx /= abs(dx);  // Move horizontally towards player
-        if (dy != 0) dy /= abs(dy);  // Move vertically towards player
+        if (dx != 0) dx /= std::abs(dx);  // Move horizontally towards player
+        if (dy != 0) dy /= std::abs(dy);  // Move vertically towards player
 
         int newX = cat.getX() + dx;
         int newY = cat.getY() + dy;

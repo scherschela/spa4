@@ -9,3 +9,11 @@ void Room::setCatnip(bool value) {
 bool Room::getCatnip() const {
     return hasCatnip;   // Return if the room contains catnip
 }
+
+void Room::setManhole(bool value) {
+    hasManhole = value;  // Set whether the room has a manhole
+}
+
+bool Room::getManhole() const {
+    return hasManhole;   // Return if the room contains a manhole
+}

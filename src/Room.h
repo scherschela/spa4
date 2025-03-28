@@ -11,6 +11,8 @@ public:
 
     void setCatnip(bool value);  // Set the catnip flag
     bool getCatnip() const;      // Get if the room has catnip
+    void setManhole(bool value); // Set the manhole flag
+    bool getManhole() const;     // Get if the room has a manhole
 };
 
 #endif
