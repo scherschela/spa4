@@ -3,4 +3,14 @@ project(spa4)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(spa4 main.cpp)
+add_executable(spa4 src/main.cpp
+        src/Map.cpp
+        src/Map.h
+        src/Room.h
+        src/Player.h
+        src/Cat.h
+        src/Game.h
+        src/Room.cpp
+        src/Player.cpp
+        src/Game.cpp
+        src/Cat.cpp)
