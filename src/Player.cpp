@@ -1,21 +1,24 @@
 #include "Player.h"
 
-Player::Player() : x(0), y(0), catnip(3) {}
+Player::Player() : x(0), y(0), catnip(false) {}  // Default starting position at (0, 0)
 
-int Player::getX() const { return x; }
-int Player::getY() const { return y; }
-
-void Player::move(int dx, int dy) {
-    x += dx;
-    y += dy;
+void Player::setPosition(int newX, int newY) {
+    x = newX;  // Set the new x-coordinate
+    y = newY;  // Set the new y-coordinate
 }
 
-void Player::useCatnip() {
-    if (catnip > 0) {
-        catnip--;
-    }
+int Player::getX() const {
+    return x;  // Return the current x-coordinate
+}
+
+int Player::getY() const {
+    return y;  // Return the current y-coordinate
 }
 
 bool Player::hasCatnip() const {
-    return catnip > 0;
+    return catnip;  // Return whether the player has catnip
+}
+
+void Player::setCatnip(bool value) {
+    catnip = value;  // Set the player's catnip status
 }

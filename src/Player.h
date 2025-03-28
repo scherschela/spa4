@@ -3,15 +3,16 @@
 
 class Player {
 private:
-    int x, y;
-    int catnip; // Number of catnip uses
+    int x, y;   // Coordinates of the player
+    bool catnip;  // Flag to check if the player has catnip
+
 public:
-    Player();
-    int getX() const;
-    int getY() const;
-    void move(int dx, int dy);
-    void useCatnip();
-    bool hasCatnip() const;
+    Player();  // Constructor to initialize position and catnip status
+    void setPosition(int newX, int newY);  // Method to set the player's position
+    int getX() const;  // Get the x-coordinate
+    int getY() const;  // Get the y-coordinate
+    bool hasCatnip() const;  // Check if the player has catnip
+    void setCatnip(bool value);  // Set the player's catnip status
 };
 
-#endif // PLAYER_H
+#endif

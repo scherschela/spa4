@@ -10,10 +10,22 @@ void Game::start() {
 
         bool validAction = false;
         switch (toupper(input)) {
-            case 'N': gameMap.movePlayer(0); validAction = true; break;
-            case 'E': gameMap.movePlayer(1); validAction = true; break;
-            case 'S': gameMap.movePlayer(2); validAction = true; break;
-            case 'W': gameMap.movePlayer(3); validAction = true; break;
+            case 'N':
+                gameMap.movePlayer(0);
+                validAction = true;
+                break;
+            case 'E':
+                gameMap.movePlayer(1);
+                validAction = true;
+                break;
+            case 'S':
+                gameMap.movePlayer(2);
+                validAction = true;
+                break;
+            case 'W':
+                gameMap.movePlayer(3);
+                validAction = true;
+                break;
             case 'T': {
                 std::cout << "Use the net in which direction? N)orth, S)outh, E)ast, W)est: ";
                 char netDirection;
@@ -27,10 +39,10 @@ void Game::start() {
                     case 'W': direction = 3; break;
                     default:
                         std::cout << "Invalid direction for net.\n";
-                    break;
+                        break;
                 }
+
                 if (direction != -1) {
-                    // Try to catch the cat
                     if (gameMap.checkNetCatch(direction)) {
                         std::cout << "You caught the cat with the net! You win!\n";
                         return;
@@ -41,29 +53,35 @@ void Game::start() {
                 validAction = true;
                 break;
             }
-            case 'C': gameMap.moveCat(); validAction = true; break;
+            case 'C': {
+                if (gameMap.playerCollectsCatnip()) {
+                    gameMap.moveCatWithCatnip();  // Use Catnip to move the cat
+                }
+                validAction = true;
+                break;
+            }
             case 'H':
                 std::cout << "Instructions:\n";
-            std::cout << "- Move with N, S, E, W.\n";
-            std::cout << "- Use the Net (T) to catch the cat.\n";
-            std::cout << "- Use Catnip (C) to lure the cat.\n";
-            std::cout << "- H for help, Q to quit.\n";
-            validAction = true;
-            break;
+                std::cout << "- Move with N, S, E, W.\n";
+                std::cout << "- Use the Net (T) to catch the cat.\n";
+                std::cout << "- Use Catnip (C) to lure the cat.\n";
+                std::cout << "- H for help, Q to quit.\n";
+                validAction = true;
+                break;
             case 'Q':
                 std::cout << "Quitting game.\n";
-            return;
+                return;
             default:
                 std::cout << "Invalid input. Try again.\n";
         }
 
         if (validAction) {
-            gameMap.moveCat();
-
             if (gameMap.checkLoss()) {
                 std::cout << "You stepped into the cat's room. You lose!\n";
                 return;
             }
+
+            gameMap.moveCat();  // If no catnip used, move the cat randomly
         }
     }
 }

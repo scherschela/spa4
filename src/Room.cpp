@@ -1,7 +1,11 @@
 #include "Room.h"
 
-Room::Room(RoomType type) : type(type) {}
+Room::Room() : hasCatnip(false), hasDog(false), hasManhole(false) {}
 
-RoomType Room::getType() const {
-    return type;
+void Room::setCatnip(bool value) {
+    hasCatnip = value;  // Set whether the room has catnip
+}
+
+bool Room::getCatnip() const {
+    return hasCatnip;   // Return if the room contains catnip
 }
